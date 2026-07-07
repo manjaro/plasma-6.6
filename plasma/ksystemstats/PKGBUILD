@@ -26,7 +26,7 @@ optdepends=('libnl: network usage monitor'
             'systemd-libs: GPU monitor')
 groups=(plasma)
 source=(https://download.kde.org/stable/plasma/$_dirver/$pkgname-$pkgver.tar.xz{,.sig})
-sha256sums=('6b5e2f2a6aaae97489e75818e7f83c2586578022760821c677cdebcefa542e36'
+sha256sums=('a18924429810c4e1394516f8d4489f1cc4732bd3b452b0c3b0967f37d1c603fa'
             'SKIP')
 validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell <jr@jriddell.org>
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
