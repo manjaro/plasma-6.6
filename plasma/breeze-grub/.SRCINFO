@@ -1,0 +1,18 @@
+pkgbase = breeze-grub
+	pkgdesc = Breeze theme for GRUB
+	pkgver = 6.6.5
+	pkgrel = 1
+	url = https://kde.org/plasma-desktop/
+	arch = any
+	license = GPL-2.0-or-later
+	depends = grub
+	source = https://download.kde.org/stable/plasma/6.6.5/breeze-grub-6.6.5.tar.xz
+	source = https://download.kde.org/stable/plasma/6.6.5/breeze-grub-6.6.5.tar.xz.sig
+	validpgpkeys = E0A3EB202F8E57528E13E72FD7574483BB57B18D
+	validpgpkeys = 0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D
+	validpgpkeys = D07BD8662C56CB291B316EB2F5675605C74E02CF
+	validpgpkeys = 1FA881591C26B276D7A5518EEAAF29B42A678C20
+	sha256sums = 5b0e875187433b0c810c56fbdf6b13a5e60f71774122a61937099ceb730fa546
+	sha256sums = SKIP
+
+pkgname = breeze-grub

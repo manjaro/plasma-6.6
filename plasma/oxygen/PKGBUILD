@@ -1,0 +1,105 @@
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Maintainer: Antonio Rojas <arojas@archlinux.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+
+pkgbase=oxygen
+pkgname=(oxygen
+         oxygen5
+         oxygen-cursors)
+pkgdesc='KDE Oxygen style'
+pkgver=6.6.6
+_dirver=$(echo $pkgver | cut -d. -f1-3)
+pkgrel=1
+arch=(x86_64)
+url='https://kde.org/plasma-desktop/'
+license=(LGPL-2.0-or-later)
+depends=(frameworkintegration
+         gcc-libs
+         glibc
+         kcmutils
+         kcolorscheme
+         kcompletion
+         kconfig
+         kconfigwidgets
+         kcoreaddons
+         kdecoration
+         kguiaddons
+         ki18n
+         kwidgetsaddons
+         kwindowsystem
+         libxcb
+         oxygen-icons
+         qt6-base
+         qt6-declarative)
+makedepends=(extra-cmake-modules
+             frameworkintegration5
+             kconfigwidgets5
+             kiconthemes5
+             kirigami2
+             kwindowsystem5
+             kservice5
+             kcompletion5
+             libplasma)
+optdepends=('oxygen5: Oxygen widget style for Qt5 applications')
+groups=(plasma)
+source=(https://download.kde.org/stable/plasma/$_dirver/$pkgname-$pkgver.tar.xz{,.sig})
+sha256sums=('40348c7beb911ec61cb96c4cbb5ea2e611e189faf4e4c9d2b29813bc28f72b4a'
+            'SKIP')
+validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell <jr@jriddell.org>
+              '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
+              'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
+              '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
+
+build() {
+  cmake -B build -S $pkgname-$pkgver \
+    -DBUILD_TESTING=OFF \
+    -DBUILD_QT5=OFF
+  cmake --build build
+
+  cmake -B build5 -S $pkgname-$pkgver \
+    -DBUILD_TESTING=OFF \
+    -DBUILD_QT6=OFF
+  cmake --build build5
+}
+
+package_oxygen() {
+  depends+=(oxygen-cursors)
+
+  DESTDIR="$pkgdir" cmake --install build
+# Split cursors
+  rm -r "$pkgdir"/usr/share/icons/{KDE_Classic,Oxygen*}
+}
+
+package_oxygen5() {
+  pkgdesc='Qt5 Oxygen style'
+  depends=(oxygen
+           gcc-libs
+           glibc
+           frameworkintegration5
+           kcompletion5
+           kconfig5
+           kconfigwidgets5
+           kguiaddons5
+           ki18n5
+           kwidgetsaddons5
+           kwindowsystem5
+           libxcb
+           qt5-base
+           qt5-declarative
+           qt5-x11extras)
+  conflicts=('oxygen<5.27.80')
+  replaces=('oxygen<5.27.80')
+  optdepends=()
+  groups=()
+
+  DESTDIR="$pkgdir" cmake --install build5
+  rm -r "$pkgdir"/usr/share/kstyle
+}
+
+package_oxygen-cursors() {
+  pkgdesc='Oxygen cursors'
+  depends=()
+  optdepends=()
+
+  DESTDIR="$pkgdir" cmake --install build/cursors
+}
