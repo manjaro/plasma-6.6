@@ -1,18 +1,19 @@
 kwayland
 layer-shell-qt
 kactivitymanagerd
+kglobalacceld
+aurorae
+knighttime
 libkscreen
 plasma-activities
 plasma-activities-stats
 libplasma
 kscreenlocker
+libksysguard
 kdecoration
 oxygen
 breeze
-kglobalacceld
-aurorae
 kwin
-libksysguard
 ksystemstats
 milou
 ocean-sound-theme
@@ -65,4 +66,3 @@ wacomtablet
 xdg-desktop-portal-kde
 plasma-keyboard
 plasma-login-manager
-knighttime
