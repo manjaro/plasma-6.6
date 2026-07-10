@@ -1,0 +1,4 @@
+[plasma-mobile]
+source = "git"
+git = "https://invent.kde.org/plasma/plasma-mobile.git"
+prefix = "v"
